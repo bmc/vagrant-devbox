@@ -3,7 +3,8 @@ cd $HOME
 
 echo "Initializing new SSH agent..."
 # spawn ssh-agent
-ssh-agent | sed 's/^echo/#echo/' > "$SSH_ENV"
+SSH_ENV=/tmp/ssh.$$
+ssh-agent | sed 's/^echo/#echo/' > $SSH_ENV
 echo succeeded
 chmod 600 "$SSH_ENV"
 . "$SSH_ENV" > /dev/null
@@ -16,7 +17,7 @@ mkdir -p lib
 (
 cd lib;
 [ -d bashlib ] || git clone git@github.com:bmc/bashlib.git;
-[ -d elisp ] || git clone git@github.com:bmc/elisp.git emacs
+[ -d emacs ] || git clone git@github.com:bmc/elisp.git emacs
 )
 
 # Autojump
@@ -35,12 +36,15 @@ rm -rf autojump
 
 mystuff=$HOME/src/mystuff
 mkdir -p  $mystuff && cd $mystuff
-git clone git@github.com:bmc/misc-scripts.git
+[ -d misc-scripts ] || git clone git@github.com:bmc/misc-scripts.git
 cd misc-scripts
 rake
-mkdir $HOME/bin
+mkdir -p $HOME/bin
 cd $HOME/bin
-ln -s $mystuff/misc-scripts/bin/* .
+for i in $mystuff/misc-scripts/bin/* 
+do
+    [ -f $i ] || ln -s $i .
+done
 
 # .bashrc
 cd $HOME
@@ -48,8 +52,8 @@ echo 'source $HOME/bash/bashrc' >$HOME/.bashrc
 
 # Configure the dotfiles
 (
-cd $HOME/lib;
-[ ! -d dotfiles ] || git clone git@github.com:bmc/dotfiles.git
+cd $HOME/lib
+[ -d dotfiles ] || git clone git@github.com:bmc/dotfiles.git
 )
 
 for i in lib/dotfiles/*
@@ -59,7 +63,7 @@ do
             ;;
         *)
             target=.`basename $i`
-            rm ! -f $target
+            rm -f $target
             ln -s $i $target
             ;;
     esac
