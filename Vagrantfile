@@ -46,6 +46,8 @@ Vagrant::Config.run do |config|
     chef.add_recipe "build-essential"
     chef.add_recipe "screen"
     chef.add_recipe "basedev"
+    chef.add_recipe "terminfo"
+    chef.add_recipe "jdk6"
     chef.add_recipe user if File.directory?("cookbooks/#{user}")
   end
 end
