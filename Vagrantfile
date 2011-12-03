@@ -5,11 +5,8 @@ Vagrant::Config.run do |config|
   config.vm.box = "oneiric64"
   config.vm.host_name = "dev"
 
-  # Toby built one. Use his.
+  # Courtesy of Toby DiPasquale.
   config.vm.box_url = "http://dl.dropbox.com/u/3886896/oneiric64.box"
-
-  # Mine.
-  #config.vm.box_url = "http://dl.dropbox.com/u/20993411/vagrant/oneiric64.box"
 
   config.vm.customize do |vm|
     vm.memory_size = 1536
