@@ -1,5 +1,4 @@
 include_recipe "screen"
-include_recipe "bmc::ssh"
 
 cookbook_file "/home/bmc/bootstrap.sh" do
   source "bootstrap.sh"
@@ -7,3 +6,5 @@ cookbook_file "/home/bmc/bootstrap.sh" do
   group  "bmc"
   mode   0755
 end
+
+include_recipe "bmc::ssh"
