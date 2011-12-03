@@ -3,9 +3,13 @@
 
 Vagrant::Config.run do |config|
   config.vm.box = "oneiric64"
-  #config.vm.box_url = "http://dl.dropbox.com/u/20993411/vagrant/oneiric64.box"
-  config.vm.box_url = "http://atlas/~bmc/tmp/package.box"
   config.vm.host_name = "dev"
+
+  # Toby built one. Use his.
+  config.vm.box_url = "http://dl.dropbox.com/u/3886896/oneiric64.box"
+
+  # Mine.
+  #config.vm.box_url = "http://dl.dropbox.com/u/20993411/vagrant/oneiric64.box"
 
   config.vm.customize do |vm|
     vm.memory_size = 1536

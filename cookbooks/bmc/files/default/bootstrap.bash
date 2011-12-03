@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd $HOME
 
 echo "Initializing new SSH agent..."
@@ -10,9 +10,10 @@ chmod 600 "$SSH_ENV"
 . "$SSH_ENV" > /dev/null
 ssh-add
 
-# Read-only clones, to avoid copying private key into here.
+echo "Installing bash files."
 [ -d bash ] || git clone git@github.com:bmc/bash.git
 
+echo "Installing bash library and Emacs Lisp files."
 mkdir -p lib
 (
 cd lib;
@@ -22,6 +23,7 @@ cd lib;
 
 # Autojump
 
+echo "Installing autojump."
 mkdir -p $HOME/tmp
 cd $HOME/tmp
 rm -rf autojump
@@ -34,23 +36,31 @@ rm -rf autojump
 
 # My tools
 
+echo "Installing personal command line tools."
 mystuff=$HOME/src/mystuff
 mkdir -p  $mystuff && cd $mystuff
 [ -d misc-scripts ] || git clone git@github.com:bmc/misc-scripts.git
 cd misc-scripts
-rake
+/usr/local/bin/rake bin
 mkdir -p $HOME/bin
 cd $HOME/bin
 for i in $mystuff/misc-scripts/bin/* 
 do
-    [ -f $i ] || ln -s $i .
+    rm -f `basename $i`
+    ln -s $i .
 done
 
+# RVM
+echo "installing RVM"
+bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+
 # .bashrc
+echo "Updating $HOME/.bashrc"
 cd $HOME
 echo 'source $HOME/bash/bashrc' >$HOME/.bashrc
 
-# Configure the dotfiles
+# Install the dotfiles
+echo "Installing dot files."
 (
 cd $HOME/lib
 [ -d dotfiles ] || git clone git@github.com:bmc/dotfiles.git
@@ -68,3 +78,7 @@ do
             ;;
     esac
 done
+
+echo "**********************************************************************"
+echo "Now, source ~/.bashrc, and you're ready to go."
+echo "**********************************************************************"

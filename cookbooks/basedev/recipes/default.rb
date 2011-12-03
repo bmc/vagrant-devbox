@@ -16,5 +16,6 @@ end
 package "git-core"
 package "ruby-dev"
 package "rubygems"
+package "curl"
 
 gem_package "rake"
