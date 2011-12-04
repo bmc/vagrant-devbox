@@ -16,5 +16,6 @@ end
 
 package "python-pip"
 package "python-virtualenv"
+package "htop"
 
 include_recipe "bmc::ssh"
