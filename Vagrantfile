@@ -14,11 +14,21 @@ Vagrant::Config.run do |config|
 
   #config.vm.forward_port "ssh", 22, 2222
   config.vm.forward_port "rails", 3000, 3000
+  config.ssh.forward_agent = true
 
   user = ENV['USER']
   home = ENV['HOME']
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
+    # Note to self: If you change this list of cookbooks, you either have to:
+    #
+    # a) run "vagrant reload", or
+    # b) shut the VM down, destroy it, and recreate it.
+    #
+    # You can't just re-run "vagrant provision".
+    #
+    # See the section on "vagrant provision" at
+    # http://vagrantup.com/docs/commands.html
+    chef.cookbooks_path = ["cookbooks", "~/src/mystuff/chef-repo/cookbooks"]
 
     # Load my current RSA or DSA SSH key and allow it to be copied up to
     # the virtual machine. This permits checkouts from private GitHub repos.
@@ -46,7 +56,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "accounts"
     chef.add_recipe "build-essential"
     chef.add_recipe "screen"
-    chef.add_recipe "basedev"
+    chef.add_recipe "base-development"
     chef.add_recipe "terminfo"
     chef.add_recipe "jdk6"
     chef.add_recipe user if File.directory?("cookbooks/#{user}")
