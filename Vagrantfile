@@ -21,7 +21,6 @@ Vagrant::Config.run do |config|
   # Courtesy of Toby DiPasquale.
   config.vm.box_url = "http://dl.dropbox.com/u/3886896/oneiric64.box"
 
-
   config.vm.customize do |vm|
     vm.memory_size = 1536
   end
@@ -33,29 +32,30 @@ Vagrant::Config.run do |config|
   # Load my current RSA or DSA SSH key and allow it to be copied up to
   # the virtual machine. This permits checkouts from private GitHub repos.
   sshdir = "#{home}/.ssh"
-  if File.exists?("#{sshdir}/id_dsa") && File.exists?("#{sshdir}/id_dsa.pub")
-    ssh_pub = "#{sshdir}/id_dsa.pub"
-    ssh_priv = "#{sshdir}/id_dsa"
-    ssh_key_type = "dsa"
-  elsif File.exists?("#{sshdir}/id_rsa") && File.exists?("#{sshdir}/id_rsa.pub")
-    ssh_pub = "#{sshdir}/id_rsa.pub"
-    ssh_priv = "#{sshdir}/id_rsa"
-    ssh_key_type = "rsa"
-  else
-    raise Exception.new("Can't find appropriate SSH key in #{sshdir}")
-  end
+  ssh_pub = nil
+  ssh_priv = nil
+  ssh_target = nil
+  %w(id_rsa id_dsa).each do |key|
+    priv = "#{sshdir}/#{key}"
+    pub = "#{sshdir}/#{key}.pub"
+    if File.exists?(pub) && File.exists?(priv)
+      ssh_pub = pub
+      ssh_priv = priv
+      ssh_target = File.basename(ssh_priv)
+      break
+    end
+end
 
+  raise Exception.new("Can't find an SSH key in #{sshdir}") unless ssh_pub 
+  
   config.ssh.forward_agent = true
-
-  # Set the private key path, so "vagrant ssh" won't prompt for a password.
-  config.ssh.private_key_path = ssh_priv
 
   # ---------------------------------------------------------------------------
   # Port forwarding
   # ---------------------------------------------------------------------------
 
-  config.vm.forward_port "rails", 3000, 3000
-  
+  # No additional ports right now.
+
   # ---------------------------------------------------------------------------
   # Provisioning.
   # ---------------------------------------------------------------------------
@@ -75,17 +75,22 @@ Vagrant::Config.run do |config|
     # Allow per-user overrides. The per-user recipes go in
     # cookbooks/$USER
     chef.json = {
-      :vm_user         => vm_user,
-      :ssh_public_key  => File.open(ssh_pub).read,
-      :ssh_private_key => File.open(ssh_priv).read,
-      :ssh_key_type    => ssh_key_type
+      :vm_user  => vm_user,
+      :rvm_user => vm_user,
+
+      :ssh => {
+         :public_key         => File.open(ssh_pub).read,
+         :private_key        => File.open(ssh_priv).read,
+         :public_key_source  => ssh_pub,
+         :private_key_source => ssh_priv,
+         :target             => ssh_target
+      }
     }
     chef.add_recipe "accounts"
     chef.add_recipe "build-essential"
     chef.add_recipe "screen"
     chef.add_recipe "base-development"
     chef.add_recipe "terminfo"
-    chef.add_recipe "jdk6"
     chef.add_recipe user if File.directory?("cookbooks/#{user}")
   end
 end

@@ -1,21 +1,21 @@
 
-file "/home/#{node[:vm_user]}/.ssh/authorized_keys" do
+cookbook_file "/home/#{node[:vm_user]}/.ssh/authorized_keys" do
   owner   node[:vm_user]
   group   node[:vm_user]
   mode    0600
-  content node[:ssh_public_key]
+  source  "ssh/authorized_keys"
 end
 
-file "/home/#{node[:vm_user]}/.ssh/id_#{node[:ssh_key_type]}.pub" do
+file "/home/#{node[:vm_user]}/.ssh/#{node[:ssh][:target]}.pub" do
   owner   node[:vm_user]
   group   node[:vm_user]
   mode    0600
-  content node[:ssh_public_key]
+  content node[:ssh][:public_key]
 end
 
-file "/home/#{node[:vm_user]}/.ssh/id_#{node[:ssh_key_type]}" do
+file "/home/#{node[:vm_user]}/.ssh/#{node[:ssh][:target]}" do
   owner   node[:vm_user]
   group   node[:vm_user]
   mode    0600
-  content node[:ssh_private_key]
+  content node[:ssh][:private_key]
 end

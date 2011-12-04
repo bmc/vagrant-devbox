@@ -80,6 +80,8 @@ do
     esac
 done
 
+echo "source ~/.bashrc" >$HOME/.profile
+
 echo "**********************************************************************"
 echo "Now, source ~/.bashrc, and you're ready to go."
 echo "**********************************************************************"
