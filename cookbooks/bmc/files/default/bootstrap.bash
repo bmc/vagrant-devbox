@@ -51,8 +51,9 @@ do
 done
 
 # RVM
-echo "installing RVM"
-bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+rvm_log=/tmp/rvm.$$
+echo "installing RVM. Logging to $rvm_log"
+bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) >$rvm_log 2>&1
 
 # .bashrc
 echo "Updating $HOME/.bashrc"
