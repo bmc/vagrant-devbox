@@ -2,31 +2,31 @@ gem_package "ruby-shadow" do
   action  :install
 end
 
-group node[:user]
+group node[:vm_user]
 
-user node[:user] do
-  home      "/home/#{node[:user]}"
-  group     node[:user]
+user node[:vm_user] do
+  home      "/home/#{node[:vm_user]}"
+  group     node[:vm_user]
   shell     "/bin/bash"
   supports  :manage_home => true
 end
 
 group "admin" do
-  members [node[:user]]
+  members [node[:vm_user]]
   append  true
 end
 
-directory "/home/#{node[:user]}/.ssh" do
-  owner   node[:user]
-  group   node[:user]
+directory "/home/#{node[:vm_user]}/.ssh" do
+  owner   node[:vm_user]
+  group   node[:vm_user]
   mode    0700
   action  :create
 end
 
-cookbook_file "/home/#{node[:user]}/.ssh/config" do
+cookbook_file "/home/#{node[:vm_user]}/.ssh/config" do
   source  "ssh_config"
-  owner   node[:user]
-  group   node[:user]
+  owner   node[:vm_user]
+  group   node[:vm_user]
   mode    0600
 end
 
