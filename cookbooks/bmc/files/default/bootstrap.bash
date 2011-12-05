@@ -19,7 +19,9 @@ ssh-add
 # ---------------------------------------------------------------------------
 
 echo "Installing bash files."
-[ -d bash ] || git clone git@github.com:bmc/bash.git
+[ ! -d bash ] || mv bash bash-
+git clone git@github.com:bmc/bash.git
+[ -d bash- ] && (cp bash-/* bash; rm -rf bash-)
 
 # ---------------------------------------------------------------------------
 # Bash library and Elisp stuff
