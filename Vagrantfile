@@ -44,7 +44,7 @@ Vagrant::Config.run do |config|
       ssh_target = File.basename(ssh_priv)
       break
     end
-end
+  end
 
   raise Exception.new("Can't find an SSH key in #{sshdir}") unless ssh_pub 
   
