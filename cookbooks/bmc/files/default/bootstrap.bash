@@ -1,6 +1,10 @@
 #!/bin/bash
 cd $HOME
 
+# ---------------------------------------------------------------------------
+# SSH agent
+# ---------------------------------------------------------------------------
+
 echo "Initializing new SSH agent..."
 # spawn ssh-agent
 SSH_ENV=/tmp/ssh.$$
@@ -10,8 +14,16 @@ chmod 600 "$SSH_ENV"
 . "$SSH_ENV" > /dev/null
 ssh-add
 
+# ---------------------------------------------------------------------------
+# Main bash startup files
+# ---------------------------------------------------------------------------
+
 echo "Installing bash files."
 [ -d bash ] || git clone git@github.com:bmc/bash.git
+
+# ---------------------------------------------------------------------------
+# Bash library and Elisp stuff
+# ---------------------------------------------------------------------------
 
 echo "Installing bash library and Emacs Lisp files."
 mkdir -p lib
@@ -21,7 +33,9 @@ cd lib;
 [ -d emacs ] || git clone git@github.com:bmc/elisp.git emacs
 )
 
+# ---------------------------------------------------------------------------
 # Autojump
+# ---------------------------------------------------------------------------
 
 echo "Installing autojump."
 mkdir -p $HOME/tmp
@@ -34,7 +48,9 @@ cd autojump
 cd $HOME/tmp
 rm -rf autojump
 
+# ---------------------------------------------------------------------------
 # My tools
+# ---------------------------------------------------------------------------
 
 echo "Installing personal command line tools."
 mystuff=$HOME/src/mystuff
@@ -50,17 +66,26 @@ do
     ln -s $i .
 done
 
+# ---------------------------------------------------------------------------
 # RVM
+# ---------------------------------------------------------------------------
+
 rvm_log=/tmp/rvm.$$
 echo "installing RVM. Logging to $rvm_log"
 bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer) >$rvm_log 2>&1
 
+# ---------------------------------------------------------------------------
 # .bashrc
+# ---------------------------------------------------------------------------
+
 echo "Updating $HOME/.bashrc"
 cd $HOME
 echo 'source $HOME/bash/bashrc' >$HOME/.bashrc
 
+# ---------------------------------------------------------------------------
 # Install the dotfiles
+# ---------------------------------------------------------------------------
+
 echo "Installing dot files."
 (
 cd $HOME/lib

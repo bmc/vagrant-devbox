@@ -1,4 +1,6 @@
 
 echo "***************************************************************"
-echo "Please run ~/bootstrap.bash once, to bootstrap the environment."
+echo "Running bootstrap.sh for the first time."
 echo "***************************************************************"
+
+bash $HOME/bootstrap.bash
