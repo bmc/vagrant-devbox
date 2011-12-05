@@ -92,6 +92,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "base-development"
     chef.add_recipe "terminfo"
     chef.add_recipe "rvm"
+    chef.add_recipe "pythonbrew"
     chef.add_recipe user if File.directory?("cookbooks/#{user}")
   end
 end
