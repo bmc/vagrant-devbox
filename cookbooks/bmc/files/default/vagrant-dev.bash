@@ -33,6 +33,4 @@ load_file ~/bash/java.sh
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib:$HOME/lib
 
-load_file ~/bash/ubuntu.sh
 load_file ~/etc/bashlib/ssh.sh
-
