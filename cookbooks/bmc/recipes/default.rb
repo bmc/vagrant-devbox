@@ -1,5 +1,13 @@
 include_recipe "screen"
 
+directory "/home/#{node[:vm_user]}/bash" do
+  action :create
+  owner  "#{node[:vm_user]}"
+  group  "#{node[:vm_user]}"
+  mode   0755
+  not_if "test -d /home/#{node[:vm_user]}/bash"
+end
+
 cookbook_file "/home/#{node[:vm_user]}/bootstrap.bash" do
   source "bootstrap.bash"
   owner  "#{node[:vm_user]}"
