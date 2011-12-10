@@ -14,15 +14,23 @@ GIT
   remote: git@github.com:bmc/chef-repo.git
   path: cookbooks/base-development
   ref: master
-  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
   specs:
     base-development (0.1.0)
 
 GIT
   remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/linux-accounts
+  ref: master
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
+  specs:
+    linux-accounts (0.1.0)
+
+GIT
+  remote: git@github.com:bmc/chef-repo.git
   path: cookbooks/pythonbrew
   ref: master
-  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
   specs:
     pythonbrew (0.1.0)
 
@@ -30,7 +38,7 @@ GIT
   remote: git@github.com:bmc/chef-repo.git
   path: cookbooks/rvm
   ref: master
-  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
   specs:
     rvm (0.1.0)
 
@@ -38,7 +46,7 @@ GIT
   remote: git@github.com:bmc/chef-repo.git
   path: cookbooks/terminfo
   ref: master
-  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
   specs:
     terminfo (0.1.0)
 
@@ -46,14 +54,9 @@ GIT
   remote: git@github.com:bmc/chef-repo.git
   path: cookbooks/virtual-python
   ref: master
-  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
+  sha: ee8cdc8bc26356e87094bbf1c8c44f77f2f04331
   specs:
     virtual-python (0.1.0)
-
-PATH
-  remote: site-cookbooks/accounts
-  specs:
-    accounts (0.0.0)
 
 PATH
   remote: site-cookbooks/bmc
@@ -61,12 +64,12 @@ PATH
     bmc (0.0.0)
 
 DEPENDENCIES
-  accounts (>= 0)
   apt (>= 0)
   base-development (>= 0)
   bmc (>= 0)
   build-essential (>= 0)
   git (>= 0)
+  linux-accounts (>= 0)
   pythonbrew (>= 0)
   rvm (>= 0)
   screen (>= 0)

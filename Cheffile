@@ -21,6 +21,11 @@ cookbook 'terminfo',
   :ref => 'master',
   :path => 'cookbooks/terminfo'
 
+cookbook 'linux-accounts',
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/linux-accounts'
+
 cookbook 'base-development',
   :git => 'git@github.com:bmc/chef-repo.git',
   :ref => 'master',
@@ -42,8 +47,6 @@ cookbook 'virtual-python',
   :path => 'cookbooks/virtual-python'
 
 # Cookbooks in this directory.
-cookbook 'accounts',
-  :path => 'site-cookbooks/accounts'
 
 cookbook 'bmc',
   :path => 'site-cookbooks/bmc'

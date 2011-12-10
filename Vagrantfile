@@ -95,7 +95,7 @@ Vagrant::Config.run do |config|
          :target             => ssh_target
       }
     }
-    chef.add_recipe "accounts"
+    chef.add_recipe "linux-accounts"
     chef.add_recipe "build-essential"
     chef.add_recipe "screen"
     chef.add_recipe "base-development"
