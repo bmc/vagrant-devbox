@@ -1,0 +1,41 @@
+#                                                        -*- ruby -*-
+# Input to "librarian" gem.
+#
+# Use the following command to sync it all up:
+#
+# librarian-chef install --clean --verbose
+# ----------------------------------------------------------------------------
+
+# Register Opscode cookbooks repo.
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'build-essential'
+cookbook 'screen'
+cookbook 'git'
+cookbook 'apt'
+
+# Assumes personal chef cookbooks repository is cloned to the
+# following directory:
+local_cookbooks = "#{ENV['HOME']}/src/mystuff/chef-repo/cookbooks"
+
+cookbook 'terminfo',
+  :path => "#{local_cookbooks}/terminfo"
+
+cookbook 'base-development',
+  :path => "#{local_cookbooks}/base-development"
+
+cookbook 'pythonbrew',
+  :path => "#{local_cookbooks}/pythonbrew"
+
+cookbook 'rvm',
+  :path => "#{local_cookbooks}/rvm"
+
+cookbook 'virtual-python',
+  :path => "#{local_cookbooks}/virtual-python"
+
+# Cookbooks in this directory.
+cookbook 'accounts',
+  :path => 'site-cookbooks/accounts'
+
+cookbook 'bmc',
+  :path => 'site-cookbooks/bmc'

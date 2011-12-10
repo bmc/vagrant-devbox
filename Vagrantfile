@@ -70,13 +70,22 @@ Vagrant::Config.run do |config|
     #
     # See the section on "vagrant provision" at
     # http://vagrantup.com/docs/commands.html
-    chef.cookbooks_path = ["cookbooks", "~/src/mystuff/chef-repo/cookbooks"]
+    chef.cookbooks_path = ["cookbooks"]
 
     # Allow per-user overrides. The per-user recipes go in
     # cookbooks/$USER
     chef.json = {
       :vm_user  => vm_user,
-      :rvm_user => vm_user,
+
+      :rvm => {
+        :user => vm_user,
+        :ruby => "1.9.2"
+      },
+
+      :virtualpy => {
+        :user => vm_user,
+        :dir  => "/home/#{vm_user}/python"
+      },
 
       :ssh => {
          :public_key         => File.open(ssh_pub).read,
@@ -92,6 +101,8 @@ Vagrant::Config.run do |config|
     chef.add_recipe "base-development"
     chef.add_recipe "terminfo"
     chef.add_recipe "rvm"
+    chef.add_recipe "rvm::ruby"
+    chef.add_recipe "virtual-python"
     chef.add_recipe "pythonbrew"
     chef.add_recipe user if File.directory?("cookbooks/#{user}")
   end

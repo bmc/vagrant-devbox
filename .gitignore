@@ -1,2 +1,4 @@
 *.sublime-workspace
 .vagrant
+cookbooks
+tmp

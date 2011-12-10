@@ -1,0 +1,60 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (1.2.2)
+    build-essential (1.0.0)
+    git (0.10.0)
+      runit (>= 0.0.0)
+      yum (>= 0.0.0)
+    runit (0.14.2)
+    screen (0.7.0)
+    yum (0.5.2)
+
+PATH
+  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/base-development
+  specs:
+    base-development (0.1.0)
+
+PATH
+  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/pythonbrew
+  specs:
+    pythonbrew (0.1.0)
+
+PATH
+  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/rvm
+  specs:
+    rvm (0.1.0)
+
+PATH
+  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/terminfo
+  specs:
+    terminfo (0.1.0)
+
+PATH
+  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/virtual-python
+  specs:
+    virtual-python (0.1.0)
+
+PATH
+  remote: site-cookbooks/accounts
+  specs:
+    accounts (0.0.0)
+
+PATH
+  remote: site-cookbooks/bmc
+  specs:
+    bmc (0.0.0)
+
+DEPENDENCIES
+  accounts (>= 0)
+  apt (>= 0)
+  base-development (>= 0)
+  bmc (>= 0)
+  build-essential (>= 0)
+  git (>= 0)
+  pythonbrew (>= 0)
+  rvm (>= 0)
+  screen (>= 0)
+  terminfo (>= 0)
+  virtual-python (>= 0)
+
