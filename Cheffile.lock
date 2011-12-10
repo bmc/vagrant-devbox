@@ -10,28 +10,43 @@ SITE
     screen (0.7.0)
     yum (0.5.2)
 
-PATH
-  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/base-development
+GIT
+  remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/base-development
+  ref: master
+  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
   specs:
     base-development (0.1.0)
 
-PATH
-  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/pythonbrew
+GIT
+  remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/pythonbrew
+  ref: master
+  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
   specs:
     pythonbrew (0.1.0)
 
-PATH
-  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/rvm
+GIT
+  remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/rvm
+  ref: master
+  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
   specs:
     rvm (0.1.0)
 
-PATH
-  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/terminfo
+GIT
+  remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/terminfo
+  ref: master
+  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
   specs:
     terminfo (0.1.0)
 
-PATH
-  remote: /home/bmc/src/mystuff/chef-repo/cookbooks/virtual-python
+GIT
+  remote: git@github.com:bmc/chef-repo.git
+  path: cookbooks/virtual-python
+  ref: master
+  sha: 98b613dccd3e5616e2c94f8e298991b46ffe6ec9
   specs:
     virtual-python (0.1.0)
 

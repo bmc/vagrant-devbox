@@ -14,24 +14,32 @@ cookbook 'screen'
 cookbook 'git'
 cookbook 'apt'
 
-# Assumes personal chef cookbooks repository is cloned to the
-# following directory:
-local_cookbooks = "#{ENV['HOME']}/src/mystuff/chef-repo/cookbooks"
+# Stuff from my personal Chef repo.
 
 cookbook 'terminfo',
-  :path => "#{local_cookbooks}/terminfo"
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/terminfo'
 
 cookbook 'base-development',
-  :path => "#{local_cookbooks}/base-development"
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/base-development'
 
 cookbook 'pythonbrew',
-  :path => "#{local_cookbooks}/pythonbrew"
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/pythonbrew'
 
 cookbook 'rvm',
-  :path => "#{local_cookbooks}/rvm"
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/rvm'
 
 cookbook 'virtual-python',
-  :path => "#{local_cookbooks}/virtual-python"
+  :git => 'git@github.com:bmc/chef-repo.git',
+  :ref => 'master',
+  :path => 'cookbooks/virtual-python'
 
 # Cookbooks in this directory.
 cookbook 'accounts',
