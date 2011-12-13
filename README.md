@@ -14,7 +14,7 @@ cookbooks down from various places on the web. Before running `vagrant up`,
 run the following commands:
 
     $ gem install librarian  # You only have to do this once, obviously.
-    $ librarian install --clean
+    $ librarian-chef install --clean
 
 That pulls the various cookbooks down, stashing them locally.
 
