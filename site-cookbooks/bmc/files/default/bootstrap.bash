@@ -19,9 +19,9 @@ ssh-add
 # ---------------------------------------------------------------------------
 
 echo "Installing bash files."
-[ ! -d bash ] || mv bash bash-
-git clone git@github.com:bmc/bash.git
-[ -d bash- ] && (cp bash-/* bash; rm -rf bash-)
+[ ! -d init-sh ] || mv init-sh init-sh-
+git clone git@github.com:bmc/init-sh.git
+[ -d init-sh- ] && (cp init-sh-/* init-sh; rm -rf init-sh-)
 
 # ---------------------------------------------------------------------------
 # Bash library and Elisp stuff
@@ -31,7 +31,7 @@ echo "Installing bash library and Emacs Lisp files."
 mkdir -p lib
 (
 cd lib;
-[ -d bashlib ] || git clone git@github.com:bmc/bashlib.git;
+[ -d bashlib ] || git clone git@github.com:bmc/lib-sh.git;
 [ -d emacs ] || git clone git@github.com:bmc/elisp.git emacs
 )
 
