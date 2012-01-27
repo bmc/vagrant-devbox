@@ -1,6 +1,7 @@
+# -*- shell -*-
 
 echo "***************************************************************"
 echo "Running bootstrap.bash for the first time."
 echo "***************************************************************"
 
-bash $HOME/bootstrap.bash
+bash $HOME/bootstrap.sh

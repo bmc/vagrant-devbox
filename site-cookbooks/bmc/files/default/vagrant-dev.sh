@@ -26,7 +26,7 @@ alias mslog="sudo tail -f /var/log/messages"
 alias mystuff="varcd mystuff"
 alias top=htop
 
-load_file ~/bash/java.sh
+load_file ~/init-sh/java.sh
 
 # ---------------------------------------------------------------------------
 # Local stuff

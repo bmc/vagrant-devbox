@@ -16,20 +16,20 @@ directory "/home/#{node[:vm_user]}/bash" do
   not_if "test -d /home/#{node[:vm_user]}/bash"
 end
 
-cookbook_file "/home/#{node[:vm_user]}/bootstrap.bash" do
-  source "bootstrap.bash"
+cookbook_file "/home/#{node[:vm_user]}/bootstrap.sh" do
+  source "bootstrap.sh"
   owner  "#{node[:vm_user]}"
   group  "#{node[:vm_user]}"
   mode   0755
-  not_if "test -e /home/#{node[:vm_user]}/bootstrap.bash"
+  not_if "test -e /home/#{node[:vm_user]}/bootstrap.sh"
 end
 
-cookbook_file "/home/#{node[:vm_user]}/.vagrant-dev.bash" do
+cookbook_file "/home/#{node[:vm_user]}/.vagrant-dev.sh" do
   source "vagrant-dev.bash"
   owner  "#{node[:vm_user]}"
   group  "#{node[:vm_user]}"
   mode   0755
-  not_if "test -e /home/#{node[:vm_user]}/bash/vagrant-dev.bash"
+  not_if "test -e /home/#{node[:vm_user]}/init-sh/vagrant-dev.sh"
 end
 
 cookbook_file "/home/#{node[:vm_user]}/.profile" do
@@ -42,5 +42,6 @@ end
 package "python-pip"
 package "python-virtualenv"
 package "htop"
+package 'zsh'
 
 include_recipe "bmc::ssh"

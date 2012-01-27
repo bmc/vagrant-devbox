@@ -18,7 +18,7 @@ ssh-add
 # Main bash startup files
 # ---------------------------------------------------------------------------
 
-echo "Installing bash files."
+echo "Installing startup files files."
 [ ! -d init-sh ] || mv init-sh init-sh-
 git clone git@github.com:bmc/init-sh.git
 [ -d init-sh- ] && (cp init-sh-/* init-sh; rm -rf init-sh-)
@@ -27,11 +27,11 @@ git clone git@github.com:bmc/init-sh.git
 # Bash library and Elisp stuff
 # ---------------------------------------------------------------------------
 
-echo "Installing bash library and Emacs Lisp files."
+echo "Installing shell library and Emacs Lisp files."
 mkdir -p lib
 (
 cd lib;
-[ -d bashlib ] || git clone git@github.com:bmc/lib-sh.git;
+[ -d lib-sh ] || git clone git@github.com:bmc/lib-sh.git;
 [ -d emacs ] || git clone git@github.com:bmc/elisp.git emacs
 )
 
@@ -46,7 +46,7 @@ rm -rf autojump
 git clone git@github.com:bmc/autojump.git
 mkdir $HOME/local
 cd autojump
-./install.sh --prefix $HOME/local
+./install.zsh
 cd $HOME/tmp
 rm -rf autojump
 
@@ -69,12 +69,25 @@ do
 done
 
 # ---------------------------------------------------------------------------
-# .bashrc
+# .bashrc and .zshrc
 # ---------------------------------------------------------------------------
 
 echo "Updating $HOME/.bashrc"
 cd $HOME
-echo 'source $HOME/bash/bashrc' >$HOME/.bashrc
+echo 'source $HOME/init-sh/bashrc' >$HOME/.bashrc
+
+echo "Updating $HOME/.zshrc"
+cd $HOME
+echo 'source $HOME/init-sh/zshrc' >$HOME/.bashrc
+
+# ---------------------------------------------------------------------------
+# .oh-my-zsh
+# ---------------------------------------------------------------------------
+
+echo "Installing Oh My Zsh"
+cd $HOME
+git clone https://github.com/robbyrussell/oh-my-zsh.git
+mv oh-my-zsh .oh-my-zsh
 
 # ---------------------------------------------------------------------------
 # Install the dotfiles
@@ -102,5 +115,5 @@ done
 echo "source ~/.bashrc" >$HOME/.profile
 
 echo "**********************************************************************"
-echo "Now, source ~/.bashrc, and you're ready to go."
+echo "Now, source ~/.zshrc, and you're ready to go."
 echo "**********************************************************************"
