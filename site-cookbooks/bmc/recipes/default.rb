@@ -43,5 +43,7 @@ package "python-pip"
 package "python-virtualenv"
 package "htop"
 package 'zsh'
+package 'libedit-dev'
+package 'openjdk-6-jdk'
 
 include_recipe "bmc::ssh"
