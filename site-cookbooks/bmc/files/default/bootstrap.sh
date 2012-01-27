@@ -78,7 +78,7 @@ echo 'source $HOME/init-sh/bashrc' >$HOME/.bashrc
 
 echo "Updating $HOME/.zshrc"
 cd $HOME
-echo 'source $HOME/init-sh/zshrc' >$HOME/.bashrc
+echo 'source $HOME/init-sh/zshrc' >$HOME/.zshrc
 
 # ---------------------------------------------------------------------------
 # .oh-my-zsh
@@ -87,14 +87,23 @@ echo 'source $HOME/init-sh/zshrc' >$HOME/.bashrc
 echo "Installing Oh My Zsh"
 cd $HOME
 git clone https://github.com/robbyrussell/oh-my-zsh.git
+rm -rf .oh-my-zsh
 mv oh-my-zsh .oh-my-zsh
+
+# 
+echo "Installing direnv"
+mkdir -p $HOME/local
+cd $HOME/local
+rm -rf direnv
+git clone https://github.com/zimbatm/direnv.git
+cd $HOME
 
 # ---------------------------------------------------------------------------
 # Change shell.
 # ---------------------------------------------------------------------------
 
 echo "Changing shell to Zsh"
-chsh
+chsh -s /bin/zsh
 
 # ---------------------------------------------------------------------------
 # Install the dotfiles
