@@ -25,7 +25,7 @@ cookbook_file "/home/#{node[:vm_user]}/bootstrap.sh" do
 end
 
 cookbook_file "/home/#{node[:vm_user]}/.vagrant-dev.sh" do
-  source "vagrant-dev.bash"
+  source "vagrant-dev.sh"
   owner  "#{node[:vm_user]}"
   group  "#{node[:vm_user]}"
   mode   0755
