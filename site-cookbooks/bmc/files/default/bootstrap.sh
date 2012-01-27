@@ -90,6 +90,13 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git
 mv oh-my-zsh .oh-my-zsh
 
 # ---------------------------------------------------------------------------
+# Change shell.
+# ---------------------------------------------------------------------------
+
+echo "Changing shell to Zsh"
+chsh
+
+# ---------------------------------------------------------------------------
 # Install the dotfiles
 # ---------------------------------------------------------------------------
 
@@ -112,8 +119,11 @@ do
     esac
 done
 
-echo "source ~/.bashrc" >$HOME/.profile
+echo "source ~/.zshrc" >$HOME/.profile
 
 echo "**********************************************************************"
-echo "Now, source ~/.zshrc, and you're ready to go."
+echo "Overlaying Zsh..."
 echo "**********************************************************************"
+
+exec zsh
+
