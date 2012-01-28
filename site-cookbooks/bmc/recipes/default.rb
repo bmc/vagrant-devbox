@@ -39,10 +39,14 @@ cookbook_file "/home/#{node[:vm_user]}/.profile" do
   mode   0644
 end
 
+package 'zsh' do
+  action :install
+  not_if "test -e /usr/bin/zsh"
+end
+
 package "python-pip"
 package "python-virtualenv"
 package "htop"
-package 'zsh'
 package 'libedit-dev'
 package 'openjdk-6-jdk'
 
