@@ -78,6 +78,13 @@ echo 'source $HOME/init-sh/bashrc' >$HOME/.bashrc
 
 echo "Updating $HOME/.zshrc"
 cd $HOME
+cat <<EOF >$HOME/.zshrc
+source ~/init-sh/zshrc
+
+export PATH=$HOME/sqlshell/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+EOF
 echo 'source $HOME/init-sh/zshrc' >$HOME/.zshrc
 
 # ---------------------------------------------------------------------------
