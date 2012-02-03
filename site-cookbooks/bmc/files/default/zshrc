@@ -1,0 +1,9 @@
+# -*- shell -*-
+
+source ~/init-sh/zshrc
+
+export PATH=$HOME/sqlshell/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
+
+alias ack="ack-grep"

@@ -39,15 +39,34 @@ cookbook_file "/home/#{node[:vm_user]}/.profile" do
   mode   0644
 end
 
+cookbook_file "/home/#{node[:vm_user]}/.zshrc" do
+  source "zshrc"
+  owner  "#{node[:vm_user]}"
+  group  "#{node[:vm_user]}"
+  mode   0644
+end
+
 package 'zsh' do
   action :install
   not_if "test -e /usr/bin/zsh"
 end
 
-package "python-pip"
-package "python-virtualenv"
-package "htop"
-package 'libedit-dev'
-package 'openjdk-6-jdk'
+PACKAGES = %w(
+  ack-grep
+  python-pip
+  python-virtual-env
+  htop
+  libedit-dev
+  openjdk-6-jdk
+  unzip
+  vim
+  zip
+  zsh
+)
+PACKAGES.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
 
 include_recipe "bmc::ssh"

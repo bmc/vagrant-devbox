@@ -50,3 +50,6 @@ cookbook 'virtual-python',
 
 cookbook 'bmc',
   :path => 'site-cookbooks/bmc'
+
+cookbook 'apt-update',
+  :path => 'site-cookbooks/apt-update'

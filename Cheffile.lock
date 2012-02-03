@@ -59,12 +59,18 @@ GIT
     virtual-python (0.1.0)
 
 PATH
+  remote: site-cookbooks/apt-update
+  specs:
+    apt-update (0.0.0)
+
+PATH
   remote: site-cookbooks/bmc
   specs:
     bmc (0.0.0)
 
 DEPENDENCIES
   apt (>= 0)
+  apt-update (>= 0)
   base-development (>= 0)
   bmc (>= 0)
   build-essential (>= 0)
