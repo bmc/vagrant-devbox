@@ -54,7 +54,7 @@ end
 PACKAGES = %w(
   ack-grep
   python-pip
-  python-virtual-env
+  python-virtualenv
   htop
   libedit-dev
   openjdk-6-jdk
