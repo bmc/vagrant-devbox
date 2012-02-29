@@ -59,7 +59,8 @@ mystuff=$HOME/src/mystuff
 mkdir -p  $mystuff && cd $mystuff
 [ -d misc-scripts ] || git clone git@github.com:bmc/misc-scripts.git
 cd misc-scripts
-/usr/local/bin/rake bin
+export PATH=$HOME/bin:/usr/local/bin:/opt/ruby/bin:/usr/bin:/bin
+rake
 mkdir -p $HOME/bin
 cd $HOME/bin
 for i in $mystuff/misc-scripts/bin/* 
