@@ -43,7 +43,7 @@ echo "Installing autojump."
 mkdir -p $HOME/tmp
 cd $HOME/tmp
 rm -rf autojump
-git clone git@github.com:bmc/autojump.git
+git clone git://github.com/joelthelion/autojump.git
 mkdir $HOME/local
 cd autojump
 ./install.zsh
